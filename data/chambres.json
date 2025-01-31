@@ -1,0 +1,9 @@
+[
+    {
+        "id_chambre": 1,
+        "id_hebergement": "1",
+        "type_chambre": "Simple",
+        "prix": 120.0,
+        "disponible": false
+    }
+]
