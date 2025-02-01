@@ -25,4 +25,8 @@ class ServiceBase:
         self.sauvegarder_donnees()
 
     def afficher(self):
-        return self.donnees
+        if not self.donnees:
+            print("Aucune donnée enregistrée.")
+        else:
+            for obj in self.donnees:
+                print(obj)

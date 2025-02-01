@@ -10,25 +10,18 @@ class GestionService:
         self.service_chambre = ServiceChambre()
         self.service_reservation = ServiceReservation()
 
-    def ajouter_reservation(self, reservation):
-        chambre = self.service_chambre.get_by_id(reservation.id_chambre)
-        if chambre and chambre["disponible"]:
-            chambre["disponible"] = False
-            self.service_chambre.sauvegarder_donnees()
-            self.service_reservation.ajouter(reservation)
+    def ajouter_chambre_a_hebergement(self, chambre):
+        hebergement = self.service_hebergement.get_by_id(chambre.id_hebergement)
+        if hebergement:
+            hebergement.setdefault("chambres", []).append(chambre.to_dict())
+            self.service_hebergement.sauvegarder_donnees()
         else:
-            print("Erreur: Chambre non disponible")
+            print("Erreur: Hébergement introuvable")
 
-    def supprimer_reservation(self, id_reservation):
-        reservation = self.service_reservation.get_by_id(id_reservation)
-        if reservation:
-            chambre = self.service_chambre.get_by_id(reservation["id_chambre"])
-            if chambre:
-                chambre["disponible"] = True
+    def mettre_a_jour_disponibilite_chambre(self, id_chambre, disponible):
+        chambres = self.service_chambre.donnees
+        for chambre in chambres:
+            if chambre["id_chambre"] == id_chambre:
+                chambre["disponible"] = disponible
                 self.service_chambre.sauvegarder_donnees()
-            self.service_reservation.supprimer(id_reservation)
-        else:
-            print("Erreur: Réservation non trouvée")
-
-    def afficher_reservations(self):
-        return self.service_reservation.afficher()
+                break
