@@ -1,9 +1,17 @@
 [
     {
-        "id_hebergement": 1,
-        "nom": "Hotel El Mouradi",
-        "adresse": "Tunis",
-        "type_hebergement": "Hotel",
-        "chambres": []
+        "id_hebergement": 2,
+        "nom": "Casa House",
+        "adresse": "Casablanca",
+        "type_hebergement": "Motel",
+        "chambres": [
+            {
+                "id_chambre": 3,
+                "id_hebergement": 2,
+                "type_chambre": "Simple",
+                "prix": 90.0,
+                "disponible": true
+            }
+        ]
     }
 ]

@@ -7,7 +7,7 @@ from models.chambre import ChambreSimple, ChambreDouble, Suite
 from models.reservation import Reservation
 from services.gestion_service import GestionService
 
-gestion=GestionService()
+gestion = GestionService()
 while True:
     print("\n--- Menu Gestion Service ---")
     print("1. Ajouter des données")
@@ -17,7 +17,7 @@ while True:
     choix = input("Entrez votre choix: ")
 
     if choix == "1":
-        print("\n--- Suppression ---")
+        print("\n--- Ajout ---")
         print("1. Ajouter un Client")
         print("2. Ajouter un Hébergement")
         print("3. Ajouter une Chambre")
@@ -32,6 +32,7 @@ while True:
                 print("Erreur: Un cluent aavec cet ID existe déja")
             else:
                 gestion.service_client.ajouter(client)
+                print("Ajout avec succées")
 
         elif choix_ajout == "2":
             id_hebergement = int(input("Entrez l'ID de l'hébergement: "))
@@ -42,6 +43,7 @@ while True:
                 print("Erreur : Un héberegement avec cet ID existe déja")
             else:
                 gestion.service_hebergement.ajouter(hebergement)
+                print("Ajout avec succées")
 
         elif choix_ajout == "3":
             id_chambre = int(input("Entrez l'ID de la chambre: "))
@@ -57,6 +59,7 @@ while True:
             else:
                 gestion.service_chambre.ajouter(chambre)
                 gestion.ajouter_chambre_a_hebergement(chambre)
+                print("Ajout avec succées")
 
         elif choix_ajout == "4":
             id_reservation = int(input("Entrez l'ID de la réservation: "))
@@ -76,12 +79,13 @@ while True:
                 reservation = Reservation(id_reservation, id_client, id_chambre, date_debut, date_fin)
                 gestion.service_reservation.ajouter(reservation)
                 gestion.mettre_a_jour_disponibilite_chambre(id_chambre, False)
+                print("Ajout avec succées")
 
         else:
             print("Choix invalide.")
 
     elif choix == "2":
-        print("\n--- Suppression ---")
+        print("\n--- Affichage ---")
         print("1. Afficher les clients")
         print("2. Afficher les hébergements")
         print("3. Afficher les chambres")
@@ -117,6 +121,7 @@ while True:
                 print("Erreur: Le client spécifie n'existe pas")
             else:
                 gestion.service_client.supprimer(id_client)
+                print("Suppresion avec succées")
 
         elif choix_suppression == "2":
             id_hebergement=int(input("Entrez l'ID d'hébergement "))
@@ -125,6 +130,7 @@ while True:
                 print("Erreur: L'hébergement spécifie n'existe pas")
             else:
                 gestion.service_hebergement.supprimer(id_hebergement)
+                print("Suppresion avec succées")
 
         elif choix_suppression == "3":
             id_chambre=int(input("Entrer l'ID de chambre"))
@@ -133,6 +139,7 @@ while True:
                 print("Erreur: La chambre spécifié n'existe pas")
             else:
                 gestion.service_chambre.supprimer(id_chambre)
+                print("Suppresion avec succées")
 
         elif choix_suppression == "4":
 
@@ -143,6 +150,7 @@ while True:
 #            else:
             gestion.service_reservation.supprimer(id_reservation)
             gestion.mettre_a_jour_disponibilite_chambre(reservation["id_chambre"], True)
+            print("Suppresion avec succées")
         else:
             print("Choix invalide.")
 

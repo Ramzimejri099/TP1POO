@@ -1,9 +1,1 @@
-[
-    {
-        "id_reservation": 1,
-        "id_client": 1,
-        "id_chambre": 1,
-        "date_debut": "2025-02-01",
-        "date_fin": "2025-03-01"
-    }
-]
+[]
